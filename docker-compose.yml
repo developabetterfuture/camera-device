@@ -1,0 +1,13 @@
+version: "1.0"
+services:
+  camera:
+    container_name: pi-camera
+    build: .
+    restart: always
+    volumes:
+      - /opt/vc:/opt/vc
+    environment:
+      LD_LIBRARY_PATH: /opt/vc/lib
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
+    privileged: true
