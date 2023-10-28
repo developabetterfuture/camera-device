@@ -3,11 +3,17 @@ services:
   camera:
     container_name: pi-camera
     build: .
+    network_mode: host
     restart: always
     volumes:
+      - /dev/bus/usb:/dev/bus/usb
       - /opt/vc:/opt/vc
+      - ./python:/app
+      - ./output:/output
+      - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
       LD_LIBRARY_PATH: /opt/vc/lib
+      DISPLAY:
     devices:
       - "/dev/vchiq:/dev/vchiq"
     privileged: true
